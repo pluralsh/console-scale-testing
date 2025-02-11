@@ -3,3 +3,9 @@ variable "allowed_ssh_ip" {
   type        = string
   default     = ""  # Leave blank to enforce required input
 }
+
+variable "db_password" {
+  description = "The database admin password"
+  type        = string
+  sensitive   = true
+}
