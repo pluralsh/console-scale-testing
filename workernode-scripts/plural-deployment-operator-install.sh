@@ -36,7 +36,7 @@ echo "KUBECONFIG: ${KUBECONFIG}"
 
 # Get the instance ID so that we don't have dupes in console with same name
 export EC2_INSTANCE_ID
-EC2_INSTANCE_ID=$(ec2-metadata -i | awk '{print $2}')
+EC2_INSTANCE_ID=$(ec2metadata --instance-id)
 
 echo "EC2_INSTANCE_ID: ${EC2_INSTANCE_ID}"
 
