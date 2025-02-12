@@ -12,9 +12,9 @@ module "worker_nodes" {
 
   user_data = <<EOF
               #!/bin/bash
-              curl https://raw.githubusercontent.com/pluralsh/console-scale-testing/refs/heads/feat/vpc-and-bastion/workernode-scripts/plural-deployment-operator-install.sh
-              chmod +x plural-deployment-operator-install.sh
-              ./plural-deployment-operator-install.sh
+              curl -O https://myscript.com/script.sh
+              chmod +x script.sh
+              ./script.sh
               EOF
 
   tags = {
