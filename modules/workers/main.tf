@@ -10,6 +10,13 @@ module "worker_nodes" {
   subnet_id               = var.private_subnet_id
   vpc_security_group_ids  = [var.worker_sg_id]
 
+  user_data = <<EOF
+              #!/bin/bash
+              curl -o k3s_plural_install.sh https://raw.githubusercontent.com/pluralsh/console-scale-testing/refs/heads/feat/vpc-and-bastion/workernode-scripts/plural-deployment-operator-install.sh
+              chmod +x k3s_plural_install.sh
+              ./k3s_plural_install.sh
+              EOF
+
   tags = {
     Name = var.worker_name
   }
