@@ -13,7 +13,7 @@ variable "worker_ami" {
 variable "worker_instance_type" {
   description = "Instance type for the worker nodes"
   type        = string
-  default     = "t2.nano"
+  default     = "t2.micro"
 }
 
 variable "key_name" {
