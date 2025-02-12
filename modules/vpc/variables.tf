@@ -31,7 +31,7 @@ variable "private_subnets" {
 variable "enable_nat_gateway" {
   description = "Enable NAT Gateway for private subnets"
   type        = bool
-  default     = false
+  default     = true
 }
 
 variable "enable_vpn_gateway" {

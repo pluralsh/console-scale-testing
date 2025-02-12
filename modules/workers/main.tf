@@ -1,20 +1,20 @@
 module "worker_nodes" {
-  source  = "terraform-aws-modules/ec2-instance/aws"
+  source = "terraform-aws-modules/ec2-instance/aws"
 
-  name           = var.worker_name
-  ami            = var.worker_ami
-  instance_type  = var.worker_instance_type
-  key_name       = var.key_name
-  count          = var.worker_count
+  name          = var.worker_name
+  ami           = var.worker_ami
+  instance_type = var.worker_instance_type
+  key_name      = var.key_name
+  count         = var.worker_count
 
-  subnet_id               = var.private_subnet_id
-  vpc_security_group_ids  = [var.worker_sg_id]
+  subnet_id              = var.private_subnet_id
+  vpc_security_group_ids = [var.worker_sg_id]
 
   user_data = <<EOF
               #!/bin/bash
-              curl -o k3s_plural_install.sh https://raw.githubusercontent.com/pluralsh/console-scale-testing/refs/heads/feat/vpc-and-bastion/workernode-scripts/plural-deployment-operator-install.sh
-              chmod +x k3s_plural_install.sh
-              ./k3s_plural_install.sh
+              curl https://raw.githubusercontent.com/pluralsh/console-scale-testing/refs/heads/feat/vpc-and-bastion/workernode-scripts/plural-deployment-operator-install.sh
+              chmod +x plural-deployment-operator-install.sh
+              ./plural-deployment-operator-install.sh
               EOF
 
   tags = {
