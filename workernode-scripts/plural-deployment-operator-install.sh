@@ -2,6 +2,8 @@
 
 set -e
 
+sudo ufw disable
+
 # Download links
 export K3S_INSTALL_SCRIPT_URL=https://get.k3s.io/
 export PLURAL_DEPLOYMENT_OPERATOR_URL=https://github.com/pluralsh/plural-cli/releases/download/v0.12.1/plural-cli_0.12.1_Linux_amd64.tar.gz
