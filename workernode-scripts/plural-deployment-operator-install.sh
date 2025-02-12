@@ -27,10 +27,12 @@ echo "Will login to ${PLURAL_CONSOLE_URL} with token ${PLURAL_CONSOLE_TOKEN}"
 plural cd login --url ${PLURAL_CONSOLE_URL} --token ${PLURAL_CONSOLE_TOKEN}
 
 # k3s uses a different config file so make sure we have read/write access
-sudo chmod a+rw /etc/rancher/k3s/k3s.yaml
+sudo chmod 777 /etc/rancher/k3s/k3s.yaml
 
 # set KUBECONFIG to point to the k3s config file
 export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
+
+echo "KUBECONFIG: ${KUBECONFIG}"
 
 # Get the instance ID so that we don't have dupes in console with same name
 export EC2_INSTANCE_ID
