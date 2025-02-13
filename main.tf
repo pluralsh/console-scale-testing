@@ -3,10 +3,10 @@ module "vpc" {
 
   vpc_name         = "console-scale-testing-vpc"
   vpc_cidr         = "10.0.0.0/16"
-  azs              = ["us-east-2a", "us-east-2b"]
+  azs              = ["us-east-1a", "us-east-1b"]
   public_subnets   = ["10.0.101.0/24", "10.0.102.0/24"]
   private_subnets  = ["10.0.1.0/24", "10.0.2.0/24"]
-  enable_nat_gateway = false
+  enable_nat_gateway = true
   enable_vpn_gateway = false
 }
 
@@ -14,7 +14,7 @@ module "bastion" {
   source = "./modules/bastion"
 
   bastion_name        = "bastion-host"
-  bastion_ami         = "ami-0c55b159cbfafe1f0"
+  bastion_ami         = "ami-01e3c4a339a264cc9"
   bastion_instance_type = "t2.micro"
   key_name        = aws_key_pair.bastion_key.key_name
   public_subnet_id    = module.vpc.public_subnets[0]
@@ -34,12 +34,14 @@ module "workers" {
   source = "./modules/workers"
 
   worker_name         = "worker-node"
-  worker_ami          = "ami-0c55b159cbfafe1f0"
-  worker_instance_type = "t2.nano"
+  worker_ami          = "ami-004dac467bb041dc7"
+  worker_instance_type = "t3.medium"
   key_name        = aws_key_pair.bastion_key.key_name
   worker_count        = 5
   private_subnet_id   = module.vpc.private_subnets[0]
   worker_sg_id        = module.security_groups.worker_sg_id
+  plural_console_url = var.plural_console_url
+  plural_console_token = var.plural_console_token
 }
 
 resource "tls_private_key" "bastion_key" {
@@ -56,4 +58,15 @@ resource "local_file" "bastion_private_key" {
   content  = tls_private_key.bastion_key.private_key_pem
   filename = "${path.module}/bastion-key.pem"
   file_permission = "0600"
+}
+
+variable "plural_console_url" {
+  description = "Plural Console URL"
+  type        = string
+}
+
+variable "plural_console_token" {
+  description = "Plural Console Token"
+  type        = string
+  sensitive   = true
 }

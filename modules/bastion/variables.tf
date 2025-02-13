@@ -7,7 +7,7 @@ variable "bastion_name" {
 variable "bastion_ami" {
   description = "AMI for the bastion instance"
   type        = string
-  default     = "ami-0c55b159cbfafe1f0"  # Amazon Linux 2023 (update as needed)
+  default     = "ami-01e3c4a339a264cc9"
 }
 
 variable "bastion_instance_type" {
