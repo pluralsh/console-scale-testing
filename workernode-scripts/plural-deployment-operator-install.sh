@@ -26,10 +26,6 @@ curl -L -s ${PLURAL_DEPLOYMENT_OPERATOR_URL} | tar xz
 sudo mv plural /usr/bin
 sudo chmod a+x /usr/bin/plural
 
-# Required for console login
-export PLURAL_CONSOLE_URL=https://https://console.johncluster.cloud.plural.sh/
-export PLURAL_CONSOLE_TOKEN=console-8hr5prptcyihxb0y0tykqbgb4905y7
-
 echo "Will login to ${PLURAL_CONSOLE_URL} with token ${PLURAL_CONSOLE_TOKEN}"
 
 # Login to plural console
