@@ -2,6 +2,7 @@
 
 set -e
 
+# disable firewall, otherwise k3s has issues starting up
 sudo ufw disable
 
 # PLURAL_CONSOLE_URL and PLURAL_CONSOLE_TOKEN should already be set by the launch userscript
