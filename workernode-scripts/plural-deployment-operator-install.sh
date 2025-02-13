@@ -4,12 +4,16 @@ set -e
 
 sudo ufw disable
 
-# Download links
+# PLURAL_CONSOLE_URL and PLURAL_CONSOLE_TOKEN should already be set by the launch userscript
+echo "Plural Console URL: ${PLURAL_CONSOLE_URL}"
+echo "Plural Console Token: ${PLURAL_CONSOLE_TOKEN}"
+
+# Download links for k3s and the plural deployment operator
+# The user should NOT have to pass these in so we can keep them constant
 export K3S_INSTALL_SCRIPT_URL=https://get.k3s.io/
 export PLURAL_DEPLOYMENT_OPERATOR_URL=https://github.com/pluralsh/plural-cli/releases/download/v0.12.1/plural-cli_0.12.1_Linux_amd64.tar.gz
-
-echo "Will download k3s from ${K3S_INSTALL_SCRIPT_URL}"
-echo "Will download plural deployment operator from ${PLURAL_DEPLOYMENT_OPERATOR_URL}"
+echo "K3S install script URL: ${K3S_INSTALL_SCRIPT_URL}"
+echo "Plural deployment operator URL: ${PLURAL_DEPLOYMENT_OPERATOR_URL}"
 
 # Install k3s
 curl -s ${K3S_INSTALL_SCRIPT_URL} | bash
@@ -18,12 +22,6 @@ curl -s ${K3S_INSTALL_SCRIPT_URL} | bash
 curl -L -s ${PLURAL_DEPLOYMENT_OPERATOR_URL} | tar xz
 sudo mv plural /usr/bin
 sudo chmod a+x /usr/bin/plural
-
-# Required for console login
-export PLURAL_CONSOLE_URL=https://console.kjmgmt.cloud.plural.sh
-export PLURAL_CONSOLE_TOKEN=console-v53jvyelbn4urjwtby94l0w9jw0c7d
-
-echo "Will login to ${PLURAL_CONSOLE_URL} with token ${PLURAL_CONSOLE_TOKEN}"
 
 # Login to plural console
 plural cd login --url ${PLURAL_CONSOLE_URL} --token ${PLURAL_CONSOLE_TOKEN}
