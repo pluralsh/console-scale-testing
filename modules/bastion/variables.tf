@@ -7,7 +7,7 @@ variable "bastion_name" {
 variable "bastion_ami" {
   description = "AMI for the bastion instance"
   type        = string
-  default     = "ami-01e3c4a339a264cc9"
+  default     = "ami-0cb91c7de36eed2cb"
 }
 
 variable "bastion_instance_type" {

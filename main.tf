@@ -3,7 +3,7 @@ module "vpc" {
 
   vpc_name         = "console-scale-testing-vpc"
   vpc_cidr         = "10.0.0.0/16"
-  azs              = ["us-east-1a", "us-east-1b"]
+  azs              = ["us-east-2a", "us-east-2b"]
   public_subnets   = ["10.0.101.0/24", "10.0.102.0/24"]
   private_subnets  = ["10.0.1.0/24", "10.0.2.0/24"]
   enable_nat_gateway = true
@@ -14,7 +14,7 @@ module "bastion" {
   source = "./modules/bastion"
 
   bastion_name        = "bastion-host"
-  bastion_ami         = "ami-01e3c4a339a264cc9"
+  bastion_ami         = "ami-0cb91c7de36eed2cb"
   bastion_instance_type = "t2.micro"
   key_name        = aws_key_pair.bastion_key.key_name
   public_subnet_id    = module.vpc.public_subnets[0]
