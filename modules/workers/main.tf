@@ -24,7 +24,7 @@ module "worker_nodes" {
             sudo chmod +x /etc/profile.d/plural_env.sh
 
             # Download and execute the install script
-            curl -o ./plural-deployment-operator-install.sh https://raw.githubusercontent.com/pluralsh/console-scale-testing/refs/heads/feat/jb-console-scale-testing/workernode-scripts/plural-deployment-operator-install.sh
+            curl -o ./plural-deployment-operator-install.sh https://raw.githubusercontent.com/pluralsh/console-scale-testing/refs/heads/k3s-fix/workernode-scripts/plural-deployment-operator-install.sh
             chmod +x ./plural-deployment-operator-install.sh
             ./plural-deployment-operator-install.sh
   EOF
