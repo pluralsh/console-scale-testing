@@ -1,1 +1,15 @@
 .terraform/
+.env
+
+terraform/key_pair.tf
+
+terraform/my-key-pair.pem
+
+*.tfvars
+
+*.pem
+
+*.code-workspace
+
+terraform.tfstate
+terraform.tfstate.backup
