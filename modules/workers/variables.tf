@@ -7,7 +7,7 @@ variable "worker_name" {
 variable "worker_ami" {
   description = "AMI for the worker nodes"
   type        = string
-  default     = "ami-01e3c4a339a264cc9"
+  default     = "ami-0cb91c7de36eed2cb"
 }
 
 variable "worker_instance_type" {
