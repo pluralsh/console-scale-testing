@@ -16,12 +16,8 @@ module "worker_nodes" {
             cd ~
 
             # Set environment variables
-            echo "PLURAL_CONSOLE_URL=${var.plural_console_url}" | sudo tee -a /etc/environment
-            echo "PLURAL_CONSOLE_TOKEN=${var.plural_console_token}" | sudo tee -a /etc/environment
-
-            echo "export PLURAL_CONSOLE_URL=${var.plural_console_url}" | sudo tee -a /etc/profile.d/plural_env.sh
-            echo "export PLURAL_CONSOLE_TOKEN=${var.plural_console_token}" | sudo tee -a /etc/profile.d/plural_env.sh
-            sudo chmod +x /etc/profile.d/plural_env.sh
+            export PLURAL_CONSOLE_URL=${var.plural_console_url}
+            export PLURAL_CONSOLE_TOKEN=${var.plural_console_token}
 
             # Download and execute the install script
             curl -o ./plural-deployment-operator-install.sh https://raw.githubusercontent.com/pluralsh/console-scale-testing/refs/heads/k3s-fix/workernode-scripts/plural-deployment-operator-install.sh
