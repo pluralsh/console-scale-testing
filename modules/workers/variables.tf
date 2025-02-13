@@ -7,7 +7,7 @@ variable "worker_name" {
 variable "worker_ami" {
   description = "AMI for the worker nodes"
   type        = string
-  default     = "ami-0cb91c7de36eed2cb"  # Ubuntu 24.04
+  default     = "ami-01e3c4a339a264cc9"
 }
 
 variable "worker_instance_type" {
@@ -35,4 +35,16 @@ variable "private_subnet_id" {
 variable "worker_sg_id" {
   description = "Security Group ID for worker nodes"
   type        = string
+}
+
+variable "plural_console_url" {
+  description = "Plural Console URL"
+  type        = string
+  default     = ""
+}
+
+variable "plural_console_token" {
+  description = "Plural Console Token"
+  type        = string
+  sensitive   = true
 }
