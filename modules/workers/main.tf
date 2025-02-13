@@ -20,7 +20,7 @@ module "worker_nodes" {
             export PLURAL_CONSOLE_TOKEN=${var.plural_console_token}
 
             # Download and execute the install script
-            curl -o ./plural-deployment-operator-install.sh https://raw.githubusercontent.com/pluralsh/console-scale-testing/refs/heads/master/workernode-scripts/plural-deployment-operator-install.sh
+            curl -o ./plural-deployment-operator-install.sh https://raw.githubusercontent.com/pluralsh/console-scale-testing/refs/heads/k3s-fix/workernode-scripts/plural-deployment-operator-install.sh
             chmod +x ./plural-deployment-operator-install.sh
             ./plural-deployment-operator-install.sh
   EOF
