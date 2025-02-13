@@ -34,7 +34,7 @@ module "workers" {
   source = "./modules/workers"
 
   worker_name         = "worker-node"
-  worker_ami          = "ami-004dac467bb041dc7"
+  worker_ami          = "ami-0cb91c7de36eed2cb"
   worker_instance_type = "t3.medium"
   key_name        = aws_key_pair.bastion_key.key_name
   worker_count        = 5

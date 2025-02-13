@@ -13,6 +13,8 @@ module "worker_nodes" {
   user_data = <<-EOF
             #!/bin/bash -e
 
+            cd ~
+
             # Set environment variables
             echo "PLURAL_CONSOLE_URL=${var.plural_console_url}" | sudo tee -a /etc/environment
             echo "PLURAL_CONSOLE_TOKEN=${var.plural_console_token}" | sudo tee -a /etc/environment
@@ -22,9 +24,9 @@ module "worker_nodes" {
             sudo chmod +x /etc/profile.d/plural_env.sh
 
             # Download and execute the install script
-            curl -o /tmp/plural-deployment-operator-install.sh https://raw.githubusercontent.com/pluralsh/console-scale-testing/refs/heads/feat/jb-console-scale-testing/workernode-scripts/plural-deployment-operator-install.sh
-            chmod +x /tmp/plural-deployment-operator-install.sh
-            /tmp/plural-deployment-operator-install.sh
+            curl -o ./plural-deployment-operator-install.sh https://raw.githubusercontent.com/pluralsh/console-scale-testing/refs/heads/feat/jb-console-scale-testing/workernode-scripts/plural-deployment-operator-install.sh
+            chmod +x ./plural-deployment-operator-install.sh
+            ./plural-deployment-operator-install.sh
   EOF
 
 
