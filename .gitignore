@@ -10,3 +10,6 @@ terraform/my-key-pair.pem
 *.pem
 
 *.code-workspace
+
+terraform.tfstate
+terraform.tfstate.backup
