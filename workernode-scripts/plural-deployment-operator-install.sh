@@ -21,7 +21,7 @@ echo "K3S install script URL: ${K3S_INSTALL_SCRIPT_URL}"
 echo "Plural deployment operator URL: ${PLURAL_DEPLOYMENT_OPERATOR_URL}"
 
 # Install k3s
-curl -s ${K3S_INSTALL_SCRIPT_URL} | INSTALL_K3S_SKIP_DOWNLOAD=true sh -
+curl -s ${K3S_INSTALL_SCRIPT_URL} | bash
 
 # Install the plural deployment operator
 curl -L -s ${PLURAL_DEPLOYMENT_OPERATOR_URL} | tar xz

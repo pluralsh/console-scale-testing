@@ -37,7 +37,7 @@ module "workers" {
   worker_ami             = "ami-0cb91c7de36eed2cb"
   worker_instance_type   = "t3.medium"
   key_name               = aws_key_pair.bastion_key.key_name
-  worker_count           = 100
+  worker_count           = 0
   private_subnet_id      = module.vpc.private_subnets[0]
   worker_sg_id           = module.security_groups.worker_sg_id
   plural_console_url     = var.plural_console_url
