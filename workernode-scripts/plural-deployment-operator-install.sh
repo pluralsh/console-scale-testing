@@ -13,7 +13,11 @@ echo "Plural Console Token: ${PLURAL_CONSOLE_TOKEN}"
 sudo mkdir -p /etc/rancher/k3s
 
 sudo cat > /etc/rancher/k3s/registries.yaml <<YAML
-
+mirrors:
+  docker.io:
+    endpoint:
+      - https://registry-1.docker.io
+    
 configs:
   "docker.io":
     auth:
