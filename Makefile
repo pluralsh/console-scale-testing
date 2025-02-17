@@ -8,14 +8,14 @@ run:
 	terraform plan -parallelism=250 -var="plural_console_url=$(PLURAL_CONSOLE_URL)" -var="plural_console_token=$(PLURAL_CONSOLE_TOKEN)"
 
 	@echo "Applying Terraform configuration..."
-	terraform apply -parallelism=250 -var="plural_console_url=$(PLURAL_CONSOLE_URL)" -var="plural_console_token=$(PLURAL_CONSOLE_TOKEN)" -auto-approve
+	terraform apply -parallelism=250 -var="plural_console_url=$(PLURAL_CONSOLE_URL)" -var="plural_console_token=$(PLURAL_CONSOLE_TOKEN)"
 
 	@echo "Terraform apply complete!"
 
 
 clean:
 	@echo "Destroying all Terraform-managed resources..."
-	terraform destroy -auto-approve
+	terraform destroy -var="plural_console_url=$(PLURAL_CONSOLE_URL)" -var="plural_console_token=$(PLURAL_CONSOLE_TOKEN)"
 
 	@echo "🗑 Removing Terraform state files..."
 	rm -rf .terraform terraform.tfstate* terraform.lock.hcl
