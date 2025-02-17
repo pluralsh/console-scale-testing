@@ -28,11 +28,21 @@ mirrors:
     endpoint:
       - "https://registry-1.docker.io"
 
+  "registry-1.docker.io"
+    endpoint:
+      - "https://registry-1.docker.io"
+
 configs:
   "docker.io":
     auth:
       username: "${var.dockerhub_username}"
       password: "${var.dockerhub_access_token}"
+  
+  "registry-1.docker.io":
+    auth:
+      username: "${var.dockerhub_username}"
+      password: "${var.dockerhub_access_token}"
+      
 EOL
 
             # Restart K3s (if it’s already installed) to apply registry config
