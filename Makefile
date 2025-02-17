@@ -15,7 +15,7 @@ run:
 
 clean:
 	@echo "Destroying all Terraform-managed resources..."
-	terraform destroy -auto-approve
+	terraform destroy -var="plural_console_url=$(PLURAL_CONSOLE_URL)" -var="plural_console_token=$(PLURAL_CONSOLE_TOKEN)"
 
 	@echo "🗑 Removing Terraform state files..."
 	rm -rf .terraform terraform.tfstate* terraform.lock.hcl
