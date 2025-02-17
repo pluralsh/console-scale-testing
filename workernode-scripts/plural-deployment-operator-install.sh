@@ -9,6 +9,39 @@ sudo ufw disable
 echo "Plural Console URL: ${PLURAL_CONSOLE_URL}"
 echo "Plural Console Token: ${PLURAL_CONSOLE_TOKEN}"
 
+# Configure Docker Hub credentials for K3s
+sudo mkdir -p /etc/rancher/k3s
+
+sudo tee /etc/rancher/k3s/registries.yaml > /dev/null <<EOL
+mirrors:
+  "docker.io":
+    endpoint:
+      - "https://registry-1.docker.io"
+
+  "registry-1.docker.io"
+    endpoint:
+      - "https://registry-1.docker.io"
+
+configs:
+  "docker.io":
+    auth:
+      username: "${DOCKERHUB_USERNAME}"
+      password: "${DOCKERHUB_ACCESS_TOKEN}"
+  
+  "registry-1.docker.io":
+    auth:
+      username: "${DOCKERHUB_USERNAME}"
+      password: "${DOCKERHUB_ACCESS_TOKEN}"
+EOL
+
+# Restart K3s (if it’s already installed) to apply registry config
+if systemctl list-unit-files | grep -q k3s.service; then
+    echo "Restarting k3s to apply new registry credentials..."
+    sudo systemctl restart k3s
+else
+    echo "K3s not installed yet, skipping restart."
+fi
+
 # Download links for k3s and the plural deployment operator
 # The user should NOT have to pass these in so we can keep them constant
 export K3S_INSTALL_SCRIPT_URL=https://get.k3s.io/
