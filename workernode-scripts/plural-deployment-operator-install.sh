@@ -41,5 +41,7 @@ EC2_INSTANCE_ID=$(ec2metadata --instance-id)
 
 echo "EC2_INSTANCE_ID: ${EC2_INSTANCE_ID}"
 
+sleep 10
+
 # Deploy the plural deployment operator
 plural cd clusters bootstrap --name ec2-test-cluster-"${EC2_INSTANCE_ID}"
