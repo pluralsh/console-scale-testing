@@ -10,25 +10,8 @@ echo "Plural Console URL: ${PLURAL_CONSOLE_URL}"
 echo "Plural Console Token: ${PLURAL_CONSOLE_TOKEN}"
 
 # Configure Docker Hub credentials for K3s
-sudo mkdir -p /etc/rancher/k3s
-
-sudo cat > /etc/rancher/k3s/registries.yaml <<YAML
-mirrors:
-  docker.io:
-    endpoint:
-      - https://registry-1.docker.io
-    
-configs:
-  "docker.io":
-    auth:
-      username: "${DOCKERHUB_USERNAME}"
-      password: "${DOCKERHUB_ACCESS_TOKEN}"
-  
-  "registry-1.docker.io":
-    auth:
-      username: "${DOCKERHUB_USERNAME}"
-      password: "${DOCKERHUB_ACCESS_TOKEN}"
-YAML
+sudo mkdir -p /var/lib/rancher/k3s/agent/images/
+sudo curl -L -o /var/lib/rancher/k3s/agent/images/k3s-airgap-images-amd64.tar.zst "https://github.com/k3s-io/k3s/releases/download/v1.31.5%2Bk3s1/k3s-airgap-images-amd64.tar.zst"
 
 # Download links for k3s and the plural deployment operator
 # The user should NOT have to pass these in so we can keep them constant
@@ -38,7 +21,7 @@ echo "K3S install script URL: ${K3S_INSTALL_SCRIPT_URL}"
 echo "Plural deployment operator URL: ${PLURAL_DEPLOYMENT_OPERATOR_URL}"
 
 # Install k3s
-curl -s ${K3S_INSTALL_SCRIPT_URL} | bash
+curl -s ${K3S_INSTALL_SCRIPT_URL} | INSTALL_K3S_SKIP_DOWNLOAD=true sh -
 
 # Install the plural deployment operator
 curl -L -s ${PLURAL_DEPLOYMENT_OPERATOR_URL} | tar xz
