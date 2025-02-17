@@ -5,10 +5,10 @@ run:
 	terraform init
 
 	@echo "Planning Terraform deployment..."
-	terraform plan -parallelism=250 -var="plural_console_url=$(PLURAL_CONSOLE_URL)" -var="plural_console_token=$(PLURAL_CONSOLE_TOKEN)"
+	terraform plan -parallelism=250 -var="plural_console_url=$(PLURAL_CONSOLE_URL)" -var="plural_console_token=$(PLURAL_CONSOLE_TOKEN)" -var="dockerhub_username=$(DOCKERHUB_USERNAME)" -var="dockerhub_access_token=$(DOCKERHUB_ACCESS_TOKEN)"
 
 	@echo "Applying Terraform configuration..."
-	terraform apply -parallelism=250 -var="plural_console_url=$(PLURAL_CONSOLE_URL)" -var="plural_console_token=$(PLURAL_CONSOLE_TOKEN)"
+	terraform apply -parallelism=250 -var="plural_console_url=$(PLURAL_CONSOLE_URL)" -var="plural_console_token=$(PLURAL_CONSOLE_TOKEN)" -var="dockerhub_username=$(DOCKERHUB_USERNAME)" -var="dockerhub_access_token=$(DOCKERHUB_ACCESS_TOKEN)" -auto-approve
 
 	@echo "Terraform apply complete!"
 

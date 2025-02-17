@@ -48,3 +48,14 @@ variable "plural_console_token" {
   type        = string
   sensitive   = true
 }
+
+variable "dockerhub_username" {
+  description = "Docker Hub username"
+  type        = string
+}
+
+variable "dockerhub_access_token" {
+  description = "Docker Hub Access Token"
+  type        = string
+  sensitive   = true
+}
