@@ -3,7 +3,7 @@ output "worker_ids" {
   value       = module.worker_nodes[*].id
 }
 
-output "worker_private_ips" {
+output "private_ips" {
   description = "List of private IPs for worker nodes"
   value       = module.worker_nodes[*].private_ip
 }

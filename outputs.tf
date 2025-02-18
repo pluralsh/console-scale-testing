@@ -33,12 +33,12 @@ output "bastion_private_ip" {
 # Worker Nodes Outputs
 output "worker_instance_ids" {
   description = "List of Worker Node instance IDs"
-  value       = module.workers.worker_ids
+  value       = concat(module.workers-a.worker_ids, module.workers-b.worker_ids, module.workers-c.worker_ids)
 }
 
 output "worker_private_ips" {
   description = "List of private IPs for Worker Nodes"
-  value       = module.workers.worker_private_ips
+  value       = concat(module.workers-a.private_ips, module.workers-b.private_ips, module.workers-c.private_ips)
 }
 
 # Security Groups Outputs

@@ -1,11 +1,8 @@
 module "vpc" {
   source = "./modules/vpc"
 
-  vpc_name         = "console-scale-testing-vpc"
-  vpc_cidr         = "10.0.0.0/16"
-  azs              = ["us-east-2a", "us-east-2b"]
-  public_subnets   = ["10.0.101.0/24", "10.0.102.0/24"]
-  private_subnets  = ["10.0.1.0/24", "10.0.2.0/24"]
+  vpc_name           = "console-scale-testing-vpc"
+  azs                = ["us-east-2a", "us-east-2b", "us-east-2c"]
   enable_nat_gateway = true
   enable_vpn_gateway = false
 }
@@ -30,7 +27,7 @@ module "security_groups" {
 }
 
 
-module "workers" {
+module "workers-a" {
   source = "./modules/workers"
 
   worker_name            = "worker-node"
@@ -39,6 +36,38 @@ module "workers" {
   key_name               = aws_key_pair.bastion_key.key_name
   worker_count           = 0
   private_subnet_id      = module.vpc.private_subnets[0]
+  worker_sg_id           = module.security_groups.worker_sg_id
+  plural_console_url     = var.plural_console_url
+  plural_console_token   = var.plural_console_token
+  dockerhub_username     = var.dockerhub_username
+  dockerhub_access_token = var.dockerhub_access_token
+}
+
+module "workers-b" {
+  source = "./modules/workers"
+
+  worker_name            = "worker-node"
+  worker_ami             = "ami-0cb91c7de36eed2cb"
+  worker_instance_type   = "t3.medium"
+  key_name               = aws_key_pair.bastion_key.key_name
+  worker_count           = 0
+  private_subnet_id      = module.vpc.private_subnets[0]
+  worker_sg_id           = module.security_groups.worker_sg_id
+  plural_console_url     = var.plural_console_url
+  plural_console_token   = var.plural_console_token
+  dockerhub_username     = var.dockerhub_username
+  dockerhub_access_token = var.dockerhub_access_token
+}
+
+module "workers-c" {
+  source = "./modules/workers"
+
+  worker_name            = "worker-node"
+  worker_ami             = "ami-0cb91c7de36eed2cb"
+  worker_instance_type   = "t3.medium"
+  key_name               = aws_key_pair.bastion_key.key_name
+  worker_count           = 0
+  private_subnet_id      = module.vpc.private_subnets[2]
   worker_sg_id           = module.security_groups.worker_sg_id
   plural_console_url     = var.plural_console_url
   plural_console_token   = var.plural_console_token

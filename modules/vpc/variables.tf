@@ -25,7 +25,7 @@ variable "public_subnets" {
 variable "private_subnets" {
   description = "List of private subnet CIDRs"
   type        = list(string)
-  default     = ["10.0.16.0/20", "10.0.32.0/20", "10.0.48.0/20"]
+  default     = ["10.0.0.0/20", "10.0.16.0/20", "10.0.32.0/20"]
 }
 
 variable "enable_nat_gateway" {
