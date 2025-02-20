@@ -1,5 +1,5 @@
 data "http" "my_ip" {
-  url = "https://ifconfig.me"
+  url = "http://icanhazip.com"
 }
 
 
